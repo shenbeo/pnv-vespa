@@ -12,7 +12,7 @@ export default function Login_client ()  {
     const navigate = useNavigate()
     axios.defaults.withCredentials = true;
     const [error, setError] = useState('')
-    const [statuss, setStatuss] = useState('')
+    const [success, setSuccess] = useState('')
     const [loading,setLoading] = useState(false)
   
     useEffect(()=>{
@@ -32,7 +32,7 @@ export default function Login_client ()  {
         .then(res =>{
             if(res.data.Status === 'Success'){
                 const id = res.data.id; 
-                setStatuss(res.data.Statuss);
+                setSuccess(res.data.Success);
                 navigate('/homePage/'+id);
             }else{
                 setError(res.data.Error);
@@ -59,7 +59,7 @@ export default function Login_client ()  {
                 {error && error}
             </div>
             <div className=" text-red-500 font-light">
-                {statuss && statuss}
+                {success && success}
             </div>
             
             
