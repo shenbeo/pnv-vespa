@@ -12,15 +12,20 @@ export default function Header() {
   const [open, setOpen] = useState(false);
   const { totalUniqueItems } = useCart();
   const { isOpen, setIsOpen } = useContext(AppContext);
+  const [loadingv, setLoadingv] = useState(true)
+
 
   // =====================GET=====================
   useEffect(() => {
+    setTimeout(()=>{
     axios
       .get('https://server-pnv-api.onrender.com/get/'+id)
       .then((res) => {
         setEmployee(res.data.Result[0]);
+        setLoadingv(false)
       })
       .catch((err) => console.log(err));
+    },[])
   }, []);
 
   // =====================GET--LOGOUT=====================
@@ -85,6 +90,7 @@ export default function Header() {
 
             <div className="ml-2">
               <div className="flex items-center mr-3 justify-center relative overflow-hidden">
+              {loadingv === true && employee.length === 0 ? <span>Loaing...</span>:
                 <img
                   className="w-10 h-10 rounded-full cursor-pointer relative hover:scale-95 transition duration-500   "
                   ref={imgRef}
@@ -92,6 +98,7 @@ export default function Header() {
                   src={`https://server-pnv-api.onrender.com/images/`+ employee.image}
                   alt=""
                 />
+  }
                 <i className="ri-arrow-down-s-fill "></i>
               </div>
               <div className="  relative flex items-start justify-center">

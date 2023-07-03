@@ -8,7 +8,7 @@ export default function Login_client ()  {
         email: '',
         password: ''
     })
-    axios.defaults.withCredentials = true;
+    // axios.defaults.withCredentials = true;
     const navigate = useNavigate()
     axios.defaults.withCredentials = true;
     const [error, setError] = useState('')
@@ -24,6 +24,9 @@ export default function Login_client ()  {
     // ============POST=========================
     const handleSumit = (e) => {
         e.preventDefault();
+        if( values.email == 0 || values.password == 0){
+            return alert("Please, enter all information!!");
+          }
         axios.post('https://server-pnv-api.onrender.com/loginClient', values)
         .then(res =>{
             if(res.data.Status === 'Success'){
