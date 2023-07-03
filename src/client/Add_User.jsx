@@ -16,6 +16,7 @@ const [data, setData] = useState({
 const navigate = useNavigate()
 
 const [loading,setLoading] = useState(false)
+const [loadingButton, setLoadingButton] = useState(false);
   
 useEffect(()=>{
   setLoading(true)
@@ -38,8 +39,10 @@ useEffect(()=>{
         if(data.name == 0 || data.email == 0 || data.password == 0 || data.address == 0 || data.image == 0){
           return alert("Your information is missing. Please re-enter !!!");
         }
+        setLoadingButton(true);
         axios.post('https://server-pnv-api.onrender.com/create', formdata)
         .then( res => {
+          setLoadingButton(true)
             navigate('/loginclient')
         })
         .catch(err => console.log(err))
@@ -98,7 +101,9 @@ useEffect(()=>{
                   <hr/>
 
               <div className=" flex mt-5 items-center justify-end">
-                    <button onClick={successAdd}  className=' bg-[#ff6600] mr-2   w-28 py-2 rounded  hover:bg-[#e67d37] text-[#fff]' type="submit">Register</button>
+              {!loadingButton && <button  className=' bg-[#ff6600] mr-2   w-28 py-2 rounded  hover:bg-[#e67d37] text-[#fff]' type="submit">Register</button>}
+              {loadingButton && <button onClick={successAdd}  className=' bg-[#ff6600] mr-2   w-28 py-2 rounded  hover:bg-[#e67d37] text-[#fff]' type="submit"><i className="fa fa-spinner fa-spin"></i>Register</button>}
+
                     <Link to="/"><button className=' bg-[#373743] text-white   w-28 py-2 rounded hover:bg-[#4f4f5a] '>Cannel</button></Link>
               </div>
 

@@ -12,8 +12,8 @@ export default function Login_client ()  {
     const navigate = useNavigate()
     axios.defaults.withCredentials = true;
     const [error, setError] = useState('')
-    const [success, setSuccess] = useState('')
     const [loading,setLoading] = useState(false)
+    const [loadingButton, setLoadingButton] = useState(false);
   
     useEffect(()=>{
       setLoading(true)
@@ -28,16 +28,16 @@ export default function Login_client ()  {
         if( values.email == 0 || values.password == 0){
             return alert("Please, enter all information!!");
           }
+          setLoadingButton(true);
         axios.post('https://server-pnv-api.onrender.com/loginClient', values)
         .then(res =>{
             if(res.data.Status === 'Success'){
+                setLoadingButton(true)
                 const id = res.data.id; 
-                setSuccess(res.data.Success);
-                console.log(setSuccess)
                 navigate('/homePage/'+id);
             }else{
+                setLoadingButton(false)
                 setError(res.data.Error);
-                console.log(setError)
             }
         })
         .catch(err => console.log(err));
@@ -59,9 +59,6 @@ export default function Login_client ()  {
 
             <div className=" text-red-500 font-light">
                 {error && error}
-            </div>
-            <div className=" text-red-500 font-light">
-                {success && success}
             </div>
             
             
@@ -98,7 +95,9 @@ export default function Login_client ()  {
                     
 
                         <div className=" flex mt-5 mb-5 items-center justify-end">
-                            <button className='  bg-[#ff6600] mr-2 duration-500 w-28 py-2 rounded  hover:bg-[#e67d37] text-[#fff]' type="submit">Login</button>
+                                {!loadingButton && <button className='  bg-[#ff6600] mr-2 duration-500 w-28 py-2 rounded  hover:bg-[#e67d37] text-[#fff]' type="submit">Login</button>}
+                                {loadingButton && <button className=' bg-[#ff6600] mr-2 duration-500 w-28 py-2 rounded  hover:bg-[#e67d37] text-[#fff]' type="submit"><i className="fa fa-spinner fa-spin"></i>Login</button>}
+
                             <Link to="/"><button className='duration-500 bg-[#373743] text-white   w-28 py-2 rounded hover:bg-[#4f4f5a] '>Cannel</button></Link>
                         </div>
 
