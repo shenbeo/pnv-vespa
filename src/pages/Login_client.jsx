@@ -33,9 +33,11 @@ export default function Login_client ()  {
             if(res.data.Status === 'Success'){
                 const id = res.data.id; 
                 setSuccess(res.data.Success);
+                console.log(setSuccess)
                 navigate('/homePage/'+id);
             }else{
                 setError(res.data.Error);
+                console.log(setError)
             }
         })
         .catch(err => console.log(err));
