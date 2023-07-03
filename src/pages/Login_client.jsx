@@ -96,7 +96,7 @@ export default function Login_client ()  {
 
                         <div className=" flex mt-5 mb-5 items-center justify-end">
                                 {!loadingButton && <button className='  bg-[#ff6600] mr-2 duration-500 w-28 py-2 rounded  hover:bg-[#e67d37] text-[#fff]' type="submit">Login</button>}
-                                {loadingButton && <button className=' bg-[#ff6600] mr-2 duration-500 w-28 py-2 rounded  hover:bg-[#e67d37] text-[#fff]' type="submit"><i className="fa fa-spinner fa-spin"></i>Login</button>}
+                                {loadingButton && <button disabled className=' bg-[#ff6600] mr-2 duration-500 w-28 py-2 rounded  hover:bg-[#e67d37] text-[#fff] ' type="submit"><i className="fa fa-spinner fa-spin mr-2 text-white"></i>Login</button>}
 
                             <Link to="/"><button className='duration-500 bg-[#373743] text-white   w-28 py-2 rounded hover:bg-[#4f4f5a] '>Cannel</button></Link>
                         </div>

@@ -102,7 +102,7 @@ useEffect(()=>{
 
               <div className=" flex mt-5 items-center justify-end">
                     {!loadingButton && <button  className=' bg-[#ff6600] mr-2   w-28 py-2 rounded  hover:bg-[#e67d37] text-[#fff]' type="submit">Register</button>}
-                    {loadingButton && <button onClick={successAdd}  className=' bg-[#ff6600] mr-2   w-28 py-2 rounded  hover:bg-[#e67d37] text-[#fff]' type="submit"><i className="fa fa-spinner fa-spin"></i>Register</button>}
+                    {loadingButton && <button disabled onClick={successAdd}  className=' bg-[#ff6600] mr-2   w-28 py-2 rounded  hover:bg-[#e67d37] text-[#fff]' type="submit"><i className="fa fa-spinner fa-spin mr-2 text-white"></i>Register</button>}
 
                     <Link to="/"><button className=' bg-[#373743] text-white   w-28 py-2 rounded hover:bg-[#4f4f5a] '>Cannel</button></Link>
               </div>
