@@ -92,6 +92,7 @@ export default function Header() {
               <div className="flex items-center mr-3 justify-center relative overflow-hidden">
               {loadingv === true && employee.length === 0 ? <span>Loaing...</span>:
                 <img
+                  loading="lazy"
                   className="w-10 h-10 rounded-full cursor-pointer relative hover:scale-95 transition duration-500   "
                   ref={imgRef}
                   onClick={() => setOpen(!open)}
