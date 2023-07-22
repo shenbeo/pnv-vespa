@@ -22,6 +22,7 @@ export default function Home_Page() {
       setLoadingPage(false);
     }, 1800);
   }, []);
+
   return (
     <div>
       <Suspense fallback={<div className="m-2">Loading...</div>}>

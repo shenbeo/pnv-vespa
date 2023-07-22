@@ -1,20 +1,19 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
 // import 'bootstrap/dist/css/bootstrap.min.css';
 // import 'bootstrap/dist/js/bootstrap.bundle.min';
-import reportWebVitals from './reportWebVitals';
+import reportWebVitals from "./reportWebVitals";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { AppProvider } from './context/AppContext';
-const root = ReactDOM.createRoot(document.getElementById('root'));
+import { AppProvider } from "./context/AppContext";
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <AppProvider>
-
-    <App />
-    <ToastContainer
+      <App />
+      <ToastContainer
         position="top-left"
         autoClose={1100}
         hideProgressBar={false}
@@ -26,7 +25,7 @@ root.render(
         pauseOnHover
         theme="light"
       />
- </AppProvider>
+    </AppProvider>
   </React.StrictMode>
 );
 

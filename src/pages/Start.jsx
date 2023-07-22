@@ -6,6 +6,7 @@ export default function Start  ()  {
 
     const naigate = useNavigate()
     const [loading,setLoading] = useState(false)
+    // LOADING
     useEffect(()=>{
       setLoading(true)
       setTimeout(()=>{
@@ -37,7 +38,7 @@ export default function Start  ()  {
                 {/* <div className='mt-3'>
                   <span className='text-white'>You want to login with account ?</span>
                 </div> */}
-
+{/* BUTTON */}
               <div className='flex mt-6 items-center justify-center'>
                 <button className=' font-medium bg-[#ff6600] duration-500 w-28 py-2 rounded mr-2 hover:bg-[#ff6600c7] text-[#fff]' onClick={e=>naigate('/loginclient')} >LOGIN USER</button>
                 <button className=' duration-500 bg-[#373743] text-white cursor-not-allowed  w-28 py-2 rounded  ' onClick={e=>naigate('/loginadmin')} disabled>ADMIN</button>

@@ -1,14 +1,14 @@
 import React, { useContext, useState } from "react";
 import { AppContext } from "../context/AppContext";
 import Cart from "./Cart";
-
 import { useCart } from "react-use-cart";
-
 
 export default function Sidebar() {
   const { isOpen, handleClose } = useContext(AppContext);
-
   const { cartTotal, emptyCart } = useCart();
+
+
+
   return (
     <div
       className={`${
@@ -24,6 +24,7 @@ export default function Sidebar() {
             alt=""
           />
         </h1> */}
+{/* CLOSE */}
         <button
           className="hover:bg-[#cccccc4f] relative w-6 h-6 flex items-center justify-center rounded-full duration-700 transition-all cursor-pointer"
           onClick={handleClose}
@@ -32,10 +33,12 @@ export default function Sidebar() {
         </button>
       </div>
 
+{/* CART */}
       <div className="flex-col flex w-full overflow-y-auto max-h-[50vh]">
         <Cart />
       </div>
 
+{/* TOTAL */}
       <div>
         <div className="flex justify-between  items-center mt-3">
           <div className="flex font-semibold">
@@ -45,6 +48,7 @@ export default function Sidebar() {
             </span>
           </div>
 
+{/* DEL */}
           <button
             onClick={() => emptyCart()}
             className=" bg-[#ff6600] w-10 flex items-center justify-center hover:bg-[#ff6600cb] duration-700 h-10 rounded-sm text-black"
@@ -53,7 +57,11 @@ export default function Sidebar() {
           </button>
         </div>
 
-        <div onClick={handleClose} className=" md:my-6 my-4 bg-[#001e2b] w-full text-md font-medium  text-sm  cursor-pointer hover:bg-[#001e2bdd] duration-700  text-white flex items-center justify-center py-2">
+{/* BUY */}
+        <div
+          onClick={handleClose}
+          className=" md:my-6 my-4 bg-[#001e2b] w-full text-md font-medium  text-sm  cursor-pointer hover:bg-[#001e2bdd] duration-700  text-white flex items-center justify-center py-2"
+        >
           <button>BUY</button>
         </div>
       </div>

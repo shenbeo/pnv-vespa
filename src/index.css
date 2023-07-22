@@ -1,26 +1,23 @@
-
-
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Jost:wght@200;300;400;500;600;700&family=Nunito:wght@200;300;400;500;600;700;800;900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Jost:wght@200;300;400;500;600;700&family=Nunito:wght@200;300;400;500;600;700;800;900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-
-*{
-font-family: 'Poppins', sans-serif;
+* {
+  font-family: "Poppins", sans-serif;
 }
 
-li{
+li {
   text-decoration: none;
   list-style-type: none;
 }
-.start{
+.start {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -29,13 +26,13 @@ li{
   position: relative;
 }
 
-.start::before{
+.start::before {
   content: "";
   display: block;
   position: absolute;
   width: 100%;
   height: 100%;
-  background: url('./assets/image/baner01.jpg');
+  background: url("./assets/image/baner01.jpg");
   width: 100vw;
   height: 100vh;
   background-position: center;
@@ -45,7 +42,7 @@ li{
   z-index: -2;
 }
 
-.start::after{
+.start::after {
   content: "";
   display: block;
   position: absolute;
@@ -55,7 +52,6 @@ li{
   opacity: 0.4;
   z-index: -2;
 }
-
 
 /* .dashboard{
   display: flex;
@@ -92,5 +88,3 @@ li{
   opacity: 0.5;
   z-index: -2;
 } */
-
-

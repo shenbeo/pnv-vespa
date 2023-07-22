@@ -3,8 +3,8 @@ import React, { useEffect, useRef, useState } from "react";
 import { toast } from "react-toastify";
 import { useCart } from "react-use-cart";
 import Sekeleton from "../components/Sekeleton";
-import Box from '@mui/material/Box';
-import Slider from '@mui/material/Slider';
+import Box from "@mui/material/Box";
+import Slider from "@mui/material/Slider";
 import { Api_Products } from "../Api/FakeApi_Slider";
 
 export default function Products() {
@@ -15,46 +15,35 @@ export default function Products() {
   const [loading, setLoading] = useState();
   const [sorted, setSorted] = useState({ sorted: "id", reversed: false });
   const { addItem } = useCart();
+  const [isCompleted, setIsCompleted] = useState(false);
+  const [index, setIndex] = useState(6);
+  const initialPosts = data.slice(0, index);
 
-  const [isCompleted, setIsCompleted] = useState(false)
-  const [index, setIndex] = useState(6)
-  const initialPosts = data.slice(0, index)
-
-
-
-
-  // =================TOAST=====================================================================================
+  // TOAST
   const loadMore = () => {
-    setIndex(index + 6)
-    console.log(index)
+    setIndex(index + 6);
+    console.log(index);
     if (index >= data.length) {
-      setIsCompleted(true)
+      setIsCompleted(true);
       setLoading(true);
       setTimeout(() => {
         setLoading(false);
       }, 1200);
-      
     } else {
-      setIsCompleted(false)
+      setIsCompleted(false);
       setLoading(true);
       setTimeout(() => {
         setLoading(false);
       }, 1200);
     }
-  
-  }
+  };
 
-
-
-
-  // =================TOAST=====================================================================================
+  // TOAST
   const successAdd = () => {
     return toast.success("Add to cart successfully!");
   };
 
-
-
-  // =================GET PRODUCTS=====================================================================================
+  // GET PRODUCTS
   // useEffect(() => {
   //   setTimeout(() => {
   //     axios
@@ -73,17 +62,8 @@ export default function Products() {
   //   }, [1200]);
   // }, []);
 
-// ##########################################################
 
-
-
-
-
-// ##########################################################
-
-
-
-  // =========SORT CATEGORY============================================================================================
+  // SORT CATEGORY
   const filterResult = (catItem) => {
     const result = filter.filter((curDate) => {
       return curDate.category === catItem;
@@ -95,8 +75,7 @@ export default function Products() {
     }, 1200);
   };
 
-
-  // =========SORT COLOR============================================================================================
+  // SORT COLOR
   const filterResultColor = (catItem) => {
     const result = filter.filter((curDate) => {
       return curDate.color === catItem;
@@ -108,9 +87,7 @@ export default function Products() {
     }, 1200);
   };
 
-
-
-  // =============SORT PRICE=====================================================================================================
+  // SORT PRICE
   // SORT PRICE 1
   const sortById1 = () => {
     setSorted({ sorted: "price", reversed: !sorted.reversed });
@@ -144,7 +121,7 @@ export default function Products() {
   };
   //END SORT PRICE
 
-  //===============SORT TEXT=====================================================================================================
+  // SORT TEXT
   const sortByName1 = () => {
     setSorted({ sorted: "name", reversed: !sorted.reversed });
     const usersCopy = [...Api_Products];
@@ -180,9 +157,11 @@ export default function Products() {
     }, 1200);
   };
 
-  // =============SEARCH========================================================================================================
+  // SEARCH
   const handleSerach = (value) => {
-    const res = Api_Products.filter((f) => f.name.toLowerCase().includes(value));
+    const res = Api_Products.filter((f) =>
+      f.name.toLowerCase().includes(value)
+    );
     setData(res);
     setLoading(true);
     setTimeout(() => {
@@ -190,10 +169,7 @@ export default function Products() {
     }, 1200);
   };
 
-
-
-
-  // =============PRICE SELEC======================================================================================================
+  // PRICE SELEC
   const [pricee, setPricee] = useState(10000);
 
   const handleInput = (event, newValue) => {
@@ -205,7 +181,7 @@ export default function Products() {
     }, 1200);
   };
 
-  // =============OPEN SORT ITEM======================================================================================================
+  // OPEN SORT ITEM
   const [open, setOpen] = useState(false);
   const menuRef = useRef();
   const imgRef = useRef();
@@ -215,15 +191,14 @@ export default function Products() {
     }
   });
 
-
   return (
     <div>
       <div className="flex text-sm py-10 ">
         <div className=" md:flex container items-start justify-between mx-auto">
-      {/* left */}
+          {/* LEFT */}
           <div className=" bg-white shadow-md border rounded-lg  p-4 md:mr-4 mb-6 md:mb-0 mx-3 md:mx-0">
             <label className="font-medium text-[#ff6600]">Product type</label>
-      {/* search */}
+            {/* SEARCH */}
             <div className=" border my-3 flex">
               <input
                 onChange={(e) => handleSerach(e.target.value)}
@@ -235,7 +210,7 @@ export default function Products() {
               />
               <i className="ri-search-line p-2  cursor-pointe  "></i>
             </div>
-      {/* item */}
+            {/* ITEMS */}
             <div className=" my-3">
               <div
                 onClick={() => filterResult("GTSsuper")}
@@ -258,7 +233,7 @@ export default function Products() {
             </div>
 
             <hr />
-      {/* color */}
+            {/* COLOR */}
             <div className="my-3">
               <label className="font-medium text-[#ff6600]">Color</label>
               <div className="md:mt-3 mt-2 ">
@@ -326,7 +301,7 @@ export default function Products() {
             </div>
 
             <hr />
-      {/* range price */}
+            {/* range price */}
             <div className="my-3">
               <label
                 // for="default-range"
@@ -349,9 +324,19 @@ export default function Products() {
                     style={{ color: "#ff6600", width: "" }}
                   />
                 </div> */}
-                    <Box >
-                        <Slider style={{ color: "#001e2b", height:"2px"}} type="range" value={pricee} min={0} step={20} max={10000} onChange={handleInput}  aria-label="Default" valueLabelDisplay="auto" />
-                  </Box>
+                <Box>
+                  <Slider
+                    style={{ color: "#001e2b", height: "2px" }}
+                    type="range"
+                    value={pricee}
+                    min={0}
+                    step={20}
+                    max={10000}
+                    onChange={handleInput}
+                    aria-label="Default"
+                    valueLabelDisplay="auto"
+                  />
+                </Box>
                 <div className="flex font-medium items-center justify-between">
                   <span>min</span>
                   <span>max</span>
@@ -366,22 +351,20 @@ export default function Products() {
                 </div>
               </div>
             </div>
-
-            {/* <hr /> */}
-
-            {/* <div className='mt-10 w-full bg-[#001e2b] rounded p-2 text-center text-white hover:bg-[#001e2bdc] duration-500'>
-                            <button>Clear fillter</button>
-                        </div> */}
           </div>
 
-
-          {/* right */}
+    
+          {/* RIGHT */}
 
           <div className="flex flex-col flex-1 bg-white shadow-md border rounded-lg  p-4 mx-3 md:mx-0">
             <div className="flex justify-between items-center w-full mb-3">
               <div>
                 <div className="flex items-center justify-center relative overflow-hidden border p-2 shadow-md">
-                  <button className=" font-medium" ref={imgRef} onClick={() => setOpen(!open)}>
+                  <button
+                    className=" font-medium"
+                    ref={imgRef}
+                    onClick={() => setOpen(!open)}
+                  >
                     Latest items
                   </button>
                   <span className="ri-arrow-down-s-fill text-sm "></span>
@@ -450,21 +433,19 @@ export default function Products() {
                           <div className=" hover:border-[#ff6600] border-[1px] shadow-md relative overflow-hidden  transition p-2 ">
                             <img
                               className="p-1 hover:scale-110 transition duration-500 cursor-pointer"
-                              src={
-                                v.image
-                              }
+                              src={v.image}
                               alt="image-products"
                             />
                             <div className="p-2 mt-2">
                               <div className="flex items-center justify-between mb-2">
-                                <span className=" font-semibold">
-                                  {v.name}
-                                </span>
+                                <span className=" font-semibold">{v.name}</span>
                               </div>
                               {/* <span className=' font-semibold mr-2'>{v.pricesale}</span> */}
                               <div className=" flex items-center justify-between">
-                                  <span className="font-semibold">$ {v.price}</span>
-                                  <span className="text-[#6e6e6e] md:text-xs text-sm font-medium ">
+                                <span className="font-semibold">
+                                  $ {v.price}
+                                </span>
+                                <span className="text-[#6e6e6e] md:text-xs text-sm font-medium ">
                                   {v.color}
                                 </span>
                               </div>
@@ -488,12 +469,23 @@ export default function Products() {
             </div>
 
             {/* nav */}
-           <div className=" text-center mt-4 mb-3">
-              {isCompleted ? <button className="bg-[#001e2b] shadow-md text-white  py-2 px-4  duration-700 w-40 hover:bg-[#ff6600]">End</button> : <button className="shadow-md bg-[#001e2b] w-40  text-white py-2 px-4 duration-700 hover:bg-[#ff6600]" onClick={loadMore}>+ Load more</button>}
+            <div className=" text-center mt-4 mb-3">
+              {isCompleted ? (
+                <button className="bg-[#001e2b] shadow-md text-white  py-2 px-4  duration-700 w-40 hover:bg-[#ff6600]">
+                  End
+                </button>
+              ) : (
+                <button
+                  className="shadow-md bg-[#001e2b] w-40  text-white py-2 px-4 duration-700 hover:bg-[#ff6600]"
+                  onClick={loadMore}
+                >
+                  + Load more
+                </button>
+              )}
             </div>
           </div>
 
-          {/* end right */}
+          {/* END RIGHT */}
         </div>
       </div>
     </div>

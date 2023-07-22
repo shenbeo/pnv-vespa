@@ -8,7 +8,10 @@ const [adminCount, setAdminCount] = useState()
 const [employeeCount, setEmployeeCount] = useState()
 const [productsCount, setProductsCount] = useState()
 const [name, setName] = useState()
+const [loading,setLoading] = useState(false)
+const [loadingv, setLoadingv] = useState(true)
 
+// 
     useEffect(()=>{
       setTimeout(()=>{
       //tolal admin
@@ -25,24 +28,13 @@ const [name, setName] = useState()
         setEmployeeCount(res.data[0].user_client)
       }).catch(err=>console.log(err))
 
-      //total salary(name) su dung trong project chinh lam2 tong hop san pham
       axios.get('http://localhost:7000/totalProducts')
       .then(res=>{
         setProductsCount(res.data[0].products)
       }).catch(err=>console.log(err))
-
-
-      //total salary(name) su dung trong project chinh lam2 tong hop san pham
-      // axios.get('http://localhost:7000/name')
-      // .then(res=>{
-      //   setName(res.data[0].sumOfName)
-      // }).catch(err=>console.log(err))
-
     },[])
 
-
-
-// lấy list admin
+// get
     const [data, setData] = useState([])
     useEffect(()=>{
         axios.get('http://localhost:7000/getAdmin')
@@ -57,9 +49,7 @@ const [name, setName] = useState()
     },[])
 
 
-
-    const [loading,setLoading] = useState(false)
-  
+  // LOADING
     useEffect(()=>{
       setLoading(true)
       setTimeout(()=>{
@@ -67,11 +57,7 @@ const [name, setName] = useState()
       },2200)//2200
     },[])
 
-
-
-    const [loadingv, setLoadingv] = useState(true)// true vì chưa có data, còn false thì dã có data
-
-
+    
   return (
     <div className=' w-full'>
       {
@@ -128,9 +114,7 @@ const [name, setName] = useState()
   {/* list of admin */}
       <div className='md:mt-8 mt-4' >
           <h4 className='mb-3 text-base md:text-xl'>Admin</h4>
-  
-  
-          <table className='shadow-md rounded border-[1px]'>
+            <table className='shadow-md rounded border-[1px]'>
               <thead className=' text-xs md:text-sm'>
                   <tr className=' border-b-[1px] bg-[#e6e6e6] text-xs md:text-sm'>
                       <th className='w-10 text-center  font-medium   p-2'>No</th>
@@ -153,10 +137,8 @@ const [name, setName] = useState()
                   })}
   
               </tbody>
-          {loadingv == true && <td  className='p-3'>Loading....</td>}
-
+              {loadingv == true && <td  className='p-3'>Loading....</td>}
           </table>
-
       </div>
       </div>
       }

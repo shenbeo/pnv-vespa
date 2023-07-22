@@ -8,14 +8,13 @@ export default function Header() {
   const { id } = useParams();
   const navigate = useNavigate();
   const [employee, setEmployee] = useState([]);
-
   const [open, setOpen] = useState(false);
   const { totalUniqueItems } = useCart();
   const { isOpen, setIsOpen } = useContext(AppContext);
   const [loadingv, setLoadingv] = useState(true)
 
 
-  // =====================GET=====================
+  // GET
   useEffect(() => {
     setTimeout(()=>{
     axios
@@ -28,7 +27,7 @@ export default function Header() {
     },[])
   }, []);
 
-  // =====================GET--LOGOUT=====================
+  // GET--LOGOUT
   const handleLogout = () => {
     axios
       .get("https://server-pnv-api.onrender.com/logout")
@@ -38,7 +37,7 @@ export default function Header() {
       .catch((err) => console.log(err));
   };
 
-  // =====================OPEN=====================
+  // OPEN
   const menuRef = useRef();
   const imgRef = useRef();
   window.addEventListener("click", (e) => {
@@ -46,6 +45,9 @@ export default function Header() {
       setOpen(false);
     }
   });
+
+
+
   return (
     <div className=" bg-[#001e2b] fixed w-full z-50 text-white shadow-md">
       <div className="py-2">
@@ -64,7 +66,7 @@ export default function Header() {
 
           <div className=" flex items-center justify-center">
             {/* <i class="ri-customer-service-fill"></i> */}
-
+{/* BELL */}
             <div className="relative   transition-all cursor-pointer rounded-full w-10 h-10 flex items-center justify-center duration-500 hover:bg-[#505050b2]">
               <i className="ri-customer-service-fill text-xl text-[#9d9d9d]"></i>
             </div>
@@ -75,7 +77,7 @@ export default function Header() {
                 <span className=" text-black font-bold">0</span>
               </div>
             </div>
-
+{/* CART */}
             <div
               onClick={() => setIsOpen(!isOpen)}
               className="relative    transition-all cursor-pointer rounded-full w-10 h-10 flex items-center justify-center duration-500 hover:bg-[#505050b2]  md:ml-1"
@@ -87,7 +89,7 @@ export default function Header() {
                 </span>
               </div>
             </div>
-
+{/* USER */}
             <div className="ml-2">
               <div className="flex items-center mr-3 justify-center relative overflow-hidden">
               {loadingv === true && employee.length === 0 ? <span>Loaing...</span>:

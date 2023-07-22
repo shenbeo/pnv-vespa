@@ -18,7 +18,7 @@ export default function List_User  ()  {
       },1200)
     },[])
 
-// ==============GET==================
+// GET
     useEffect(()=>{
         setTimeout(()=>{
             axios.get('http://localhost:7000/getUserClient')
@@ -36,7 +36,7 @@ export default function List_User  ()  {
     },[])
 
 
-//==============DEL==================
+//DEL
     const handleDelete = (id) => {
         axios.delete('http://localhost:7000/delete/'+id)
         .then(res => {
@@ -51,7 +51,7 @@ export default function List_User  ()  {
 
 
 
-// SORT = NAME===========================
+// SORT = NAME
 const sortByName = () => {
     setSorted({sorted:"name", reversed: !sorted.reversed });
         const usersCopy = [...data];
@@ -66,7 +66,7 @@ const sortByName = () => {
         setData(usersCopy);
 }
 
-// SORT = EMAIL==========================
+// SORT = EMAIL
 const sortByEmail = () => {
     setSorted({sorted:"email", reversed: !sorted.reversed });
         const usersCopy = [...data];
@@ -83,7 +83,7 @@ const sortByEmail = () => {
 }
 
 
-// SORT = ADDRESS==========================
+// SORT = ADDRESS
 const sortByAddress = () => {
     setSorted({sorted:"address", reversed: !sorted.reversed });
         const usersCopy = [...data];
@@ -100,16 +100,14 @@ const sortByAddress = () => {
 }
 
 
-// =============SEARCH===========================
+// SEARCH
 const handleSerach =(value)=>{
     const res = filterData.filter(f=>f.name.toLowerCase().includes(value))
     setData(res)
 }
 
 
-
-
-// =============PANIPAGE===========================
+// PANIPAGE
 const [currentPage, setCurrentPage] = useState(1)
 const recordsPerPage = 4;
 const lastIndex = currentPage * recordsPerPage;
@@ -123,16 +121,15 @@ function prePage(){
         setCurrentPage(currentPage -1)
     }
 }
-
 function changeCPage(id){
     setCurrentPage(id)
 }
-
 function nextPage(){
     if(currentPage !== npage){
         setCurrentPage(currentPage +1)
     }
 }
+
 
 
   return (
@@ -189,6 +186,7 @@ function nextPage(){
                                 </tbody>
                             {loadingv == true && <td  className='p-3'>Loading....</td>}
                         </table>
+                        
 {/* ============= */}
                     <nav className='mt-4'>
                         <ul className=' flex w-full items-center justify-end'>
@@ -213,7 +211,7 @@ function nextPage(){
                             </div>
                         </ul>
                     </nav>
-
+{/*  */}
                 </div>
         }
     </div>

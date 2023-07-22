@@ -11,8 +11,7 @@ export default function List_Products  ()  {
     const [loading,setLoading] = useState(false)
     const [sorted, setSorted] = useState({ sorted: "id", reversed: false });
 
-
-
+// LOADING
     useEffect(()=>{
         setLoading(true)
         setTimeout(()=>{
@@ -20,10 +19,7 @@ export default function List_Products  ()  {
         },1200)
       },[])
 
-
-
-
-// =================GET============================
+// GET
     useEffect(()=>{
         setTimeout(()=>{
             axios.get('http://localhost:7000/getProducts')
@@ -40,9 +36,7 @@ export default function List_Products  ()  {
         },[3000])
     },[])
 
-
-
-// =================DEL============================
+// DEL
     const handleDelete = (id) => {
       axios.delete('http://localhost:7000/deleteProducts/'+id)
       .then(res => {
@@ -55,14 +49,13 @@ export default function List_Products  ()  {
       .catch(err=> console.log(err));
   }
 
-// =================SUCCESS============================
+// SUCCESS
   const successDel = () => {
     toast.success("Product Deleted successfully!");
   };
 
-  
 
-  // SORT = NAME=================================
+  // SORT = NAME
   const sortByName = () => {
       setSorted({sorted:"name", reversed: !sorted.reversed });
           const usersCopy = [...data];
@@ -77,7 +70,7 @@ export default function List_Products  ()  {
           setData(usersCopy);
   }
   
-  // SORT = CATEGORY =================================
+  // SORT = CATEGORY 
   const sortByCategory = () => {
       setSorted({sorted:"category", reversed: !sorted.reversed });
           const usersCopy = [...data];
@@ -93,16 +86,13 @@ export default function List_Products  ()  {
   
   }
   
-  
-//SERACH =================================
+//SERACH
   const handleSerach =(value)=>{
       const res = filterData.filter(f=>f.name.toLowerCase().includes(value))
       setData(res)
   }
   
-  
-
-// SORT = PRICE =================================
+// SORT = PRICE 
 const sortByPrice = () => {
     setSorted({sorted:"price", reversed: !sorted.reversed });
     const usersCopy = [...data];
@@ -115,8 +105,7 @@ const sortByPrice = () => {
     setData(usersCopy);
 }
 
-
-// SORT = QUANTITY =================================
+// SORT = QUANTITY 
 const sortByQuantity = () => {
     setSorted({sorted:"quantity", reversed: !sorted.reversed });
     const usersCopy = [...data];
@@ -129,8 +118,7 @@ const sortByQuantity = () => {
     setData(usersCopy);
 }
 
-
-//=======PANIGATE================================
+//PANIGATE
 const [currentPage, setCurrentPage] = useState(1)
 const recordsPerPage = 5;
 const lastIndex = currentPage * recordsPerPage;
@@ -139,18 +127,14 @@ const records = data.slice(firstIndex, lastIndex)
 const npage = Math.ceil(data.length / recordsPerPage)
 const numbers = [...Array(npage +1).keys()].slice(1)
 
-
 function prePage(){
     if(currentPage !== 1){
         setCurrentPage(currentPage -1)
     }
 }
-
 function changeCPage(id){
     setCurrentPage(id)
 }
-
-
 function nextPage(){
     if(currentPage !== npage){
         setCurrentPage(currentPage +1)
@@ -180,7 +164,6 @@ function nextPage(){
                 </div>
             </div>
             {/* ============ */}
-    
                 <table className='shadow-md rounded border-[1px] w-full'>
                     <thead className='text-xs'>
                         <tr className='border-b-[1px] bg-[#e6e6e6]'>
@@ -224,7 +207,6 @@ function nextPage(){
                     {loadingv == true && <p  className='p-3'>Loading....</p>}
                 </table>
             {/* ============ */}
-
                 <nav className='mt-4'>
                     <ul className=' flex w-full items-center justify-end'>
                         <div >
@@ -248,9 +230,7 @@ function nextPage(){
                         </div>
                     </ul>
                 </nav>
-
-
-
+                {/*  */}
         </div>
         }
     </div>

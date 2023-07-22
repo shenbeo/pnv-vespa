@@ -8,7 +8,7 @@ export default function Dashboard () {
     const navigate = useNavigate()
     axios.defaults.withCredentials = true;
 
-// =======GET====================================
+// GET
     useEffect(()=>{
         axios.get('http://localhost:7000/dashboard')
         .then(res=>{
@@ -26,7 +26,7 @@ export default function Dashboard () {
     },[])
 
 
-// =======LOGOUT====================================
+// LOGOUT
     const handleLogout = ()=>{
         axios.get('http://localhost:7000/logout')
         .then(res => {
@@ -35,7 +35,7 @@ export default function Dashboard () {
     }
 
 
-// =======SUCCESS-ADD====================================
+// SUCCESS-ADD
     const successAdd = () => {
        return toast.success("Logout successfully!");
       };
@@ -116,10 +116,11 @@ export default function Dashboard () {
                             </div>
                 </div>
             </div>
-    
+    {/*  */}
             <div className='flex w-100 bg-white  md:ml-3 mt-2  md:mt-0'>
                     <Outlet/>
             </div>
+    {/*  */}
         </div>
     </div>
   )
