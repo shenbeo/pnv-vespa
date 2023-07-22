@@ -26,7 +26,7 @@ useEffect(()=>{
 },[])
 
 
-CREATE
+//CREATE
     const handleSubmit =(e)=>{
         e.preventDefault();
         const formdata= new FormData();
@@ -47,7 +47,7 @@ CREATE
         .catch(err => console.log(err))
     }
 
-SUCCESS-ADD
+// SUCCESS-ADD
     const successAdd = () => {
       if(data.name != 0 &&  data.email != 0 && data.password != 0 && data.address != 0 && data.image != 0 )
      return toast.success("Signup successfully!");
