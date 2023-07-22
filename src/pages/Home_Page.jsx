@@ -16,6 +16,7 @@ const Sidebar = React.lazy(() => import("../components/Sidebar"));
 export default function Home_Page() {
   const [loadingPage, setLoadingPage] = useState(false);
 
+  
   useEffect(() => {
     setLoadingPage(true);
     setTimeout(() => {
